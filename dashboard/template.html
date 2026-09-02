@@ -1,0 +1,2150 @@
+<meta charset="utf-8">
+<title>Market Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+
+<style>
+:root {
+  --ground: #eef1f5;
+  --surface: #fbfcfd;
+  --surface-2: #f3f6f9;
+  --hairline: #dce1e8;
+  --hairline-strong: #c3ccd7;
+  --ink: #141a23;
+  --ink-2: #3d4757;
+  --muted: #5b6675;
+  --faint: #8e99a8;
+  --accent: #0a6cc0;
+  --good: #1f7a5a;
+  --caution: #8a6410;
+
+  --c1: #0a6cc0;
+  --c2: #c25510;
+  --c3: #7a45b8;
+  --c4: #4f7d18;
+  --reference: #6b7686;
+
+  --c1-wash: rgba(10, 108, 192, .10);
+  --c2-wash: rgba(194, 85, 16, .10);
+
+  --shadow: 0 1px 2px rgba(20, 26, 35, .06), 0 6px 18px rgba(20, 26, 35, .05);
+  --shadow-lg: 0 2px 4px rgba(20, 26, 35, .06), 0 18px 44px rgba(20, 26, 35, .10);
+
+  --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0b0f15;
+    --surface: #151b23;
+    --surface-2: #1b232d;
+    --hairline: #26303c;
+    --hairline-strong: #3a4655;
+    --ink: #e4e9f0;
+    --ink-2: #b9c3d0;
+    --muted: #8b96a5;
+    --faint: #6b7686;
+    --accent: #3d90d8;
+    --good: #3fa47c;
+    --caution: #c9962e;
+
+    --c1: #3d90d8;
+    --c2: #d9752c;
+    --c3: #9a72d4;
+    --c4: #6fa03a;
+    --reference: #7c8797;
+
+    --c1-wash: rgba(61, 144, 216, .14);
+    --c2-wash: rgba(217, 117, 44, .14);
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .3);
+    --shadow-lg: 0 2px 6px rgba(0, 0, 0, .5), 0 20px 48px rgba(0, 0, 0, .42);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #0b0f15;
+  --surface: #151b23;
+  --surface-2: #1b232d;
+  --hairline: #26303c;
+  --hairline-strong: #3a4655;
+  --ink: #e4e9f0;
+  --ink-2: #b9c3d0;
+  --muted: #8b96a5;
+  --faint: #6b7686;
+  --accent: #3d90d8;
+  --good: #3fa47c;
+  --caution: #c9962e;
+
+  --c1: #3d90d8;
+  --c2: #d9752c;
+  --c3: #9a72d4;
+  --c4: #6fa03a;
+  --reference: #7c8797;
+
+  --c1-wash: rgba(61, 144, 216, .14);
+  --c2-wash: rgba(217, 117, 44, .14);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .3);
+  --shadow-lg: 0 2px 6px rgba(0, 0, 0, .5), 0 20px 48px rgba(0, 0, 0, .42);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 96px; }
+
+/* ---------- hero ---------- */
+.masthead {
+  position: relative;
+  padding: 68px 0 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+h1 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(44px, 7.5vw, 84px);
+  line-height: .96;
+  letter-spacing: -.035em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 .thin { font-weight: 400; font-style: italic; color: var(--muted); }
+
+.standfirst {
+  font-family: var(--serif);
+  font-size: clamp(17px, 2.2vw, 20px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 58ch;
+  margin: 0;
+}
+
+.lang { position: absolute; top: 26px; right: 0; display: flex; gap: 3px; }
+
+.lang-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  padding: 4px 9px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s;
+}
+
+.lang-btn:hover { color: var(--ink); border-color: var(--accent); }
+.lang-btn[aria-pressed="true"] { color: var(--ink); border-color: var(--ink); font-weight: 500; }
+
+/* ---------- market switch ---------- */
+.controls {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--ground);
+  padding: 16px 0 14px;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.tabs { display: flex; gap: 4px; }
+
+.tab {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  padding: 7px 16px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: color .12s, border-color .12s, background .12s;
+}
+
+.tab:hover { color: var(--ink); border-color: var(--accent); }
+.tab[aria-selected="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 500;
+}
+:root[data-theme="dark"] .tab[aria-selected="true"],
+:root:not([data-theme="light"]) .tab[aria-selected="true"] { color: #0b0f15; }
+
+.period {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- sections ---------- */
+section { margin-top: 56px; }
+
+.sec-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+
+h2.sec-title {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.2vw, 32px);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.sec-note { margin: 0; color: var(--muted); font-size: 14px; max-width: 70ch; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- terminal: candles + prediction ---------- */
+.picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.chips { display: flex; gap: 5px; flex-wrap: wrap; }
+
+.chip-btn {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .03em;
+  padding: 6px 11px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+
+.chip-btn:hover { color: var(--ink); border-color: var(--accent); }
+.chip-btn[aria-selected="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+  font-weight: 600;
+}
+
+.range { display: flex; gap: 4px; flex: none; }
+
+.range-btn {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  padding: 6px 12px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.range-btn[aria-pressed="true"] { color: var(--ink); border-color: var(--accent); }
+
+.terminal {
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(300px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 940px) { .terminal { grid-template-columns: minmax(0, 1fr); } }
+
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.chart-title { font-weight: 600; font-size: 16px; margin: 0; }
+.chart-sub { font-size: 12.5px; color: var(--muted); margin: 3px 0 0; }
+
+.legend { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+
+.swatch { width: 14px; height: 3px; border-radius: 2px; flex: none; }
+.swatch.dashed { height: 0; border-top: 2px dashed var(--reference); border-radius: 0; }
+.swatch.box { width: 9px; height: 9px; border-radius: 1px; }
+.swatch.box.hollow { background: none; border: 1.5px solid var(--muted); }
+
+/* ---------- prediction panel ---------- */
+.call {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  position: sticky;
+  top: 78px;
+}
+
+@media (max-width: 940px) { .call { position: static; } }
+
+.call-top {
+  padding: 20px 22px 18px;
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.call-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.call-ticker {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--ink);
+}
+
+.call-when { font-size: 12.5px; color: var(--muted); }
+
+.call-body { padding: 24px 22px; display: flex; flex-direction: column; gap: 16px; }
+
+.call-verdict { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+
+.call-prob {
+  font-family: var(--mono);
+  font-size: 54px;
+  font-weight: 600;
+  letter-spacing: -.04em;
+  line-height: .9;
+  font-variant-numeric: tabular-nums;
+}
+
+.call-dir {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 2px;
+}
+
+.call-dir.up { color: var(--c1); background: var(--c1-wash); }
+.call-dir.down { color: var(--c2); background: var(--c2-wash); }
+.call-dir.flat { color: var(--muted); background: var(--surface-2); }
+
+.call-explain { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+/* Escala com o 50% marcado: sem ela, "56%" parece muito mais do que e. */
+.gauge { display: flex; flex-direction: column; gap: 7px; }
+
+.gauge-track {
+  position: relative;
+  height: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.gauge-fill { position: absolute; top: 0; bottom: 0; border-radius: 5px; }
+.gauge-mid { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--hairline-strong); }
+
+.gauge-scale {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.call-rows { display: flex; flex-direction: column; }
+
+.call-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--hairline);
+  font-size: 13px;
+}
+
+.call-row span:first-child { color: var(--muted); }
+.call-row span:last-child {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.call-warn {
+  margin: 0;
+  padding: 14px 22px 18px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--hairline);
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.call-warn strong { color: var(--caution); font-weight: 600; }
+
+.candle-stats {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+
+.stat { display: flex; flex-direction: column; gap: 3px; }
+
+.stat-k {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stat-v {
+  font-family: var(--mono);
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.plot { width: 100%; display: block; overflow: visible; }
+.plot text { font-family: var(--mono); font-size: 10px; fill: var(--faint); }
+.plot .axis-line { stroke: var(--hairline-strong); stroke-width: 1; }
+.plot .grid { stroke: var(--hairline); stroke-width: 1; }
+.plot .series { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+
+/* ---------- signals grid ---------- */
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
+  gap: 10px;
+}
+
+.signal {
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 15px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: border-color .12s, transform .12s;
+}
+
+.signal:hover { border-color: var(--accent); transform: translateY(-1px); }
+.signal.act { border-color: var(--accent); }
+.signal.sel { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+
+.signal-ticker { font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--ink); }
+.signal-prob { font-family: var(--mono); font-size: 24px; font-variant-numeric: tabular-nums; letter-spacing: -.03em; color: var(--ink); }
+.signal-meter { height: 5px; background: var(--surface-2); border-radius: 3px; overflow: hidden; position: relative; }
+.signal-meter i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+.signal-meter u { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--hairline-strong); }
+.signal-foot { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- explanation cards ---------- */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 14px;
+}
+
+.how {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.how-n {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.how h3 { margin: 0; font-family: var(--serif); font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+.how p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+.how .proof {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--good);
+  letter-spacing: .02em;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+/* ---------- KPI tiles ---------- */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 12px;
+}
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kpi-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.kpi-value {
+  font-family: var(--mono);
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.kpi-sub { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  width: fit-content;
+}
+
+.chip.good { color: var(--good); }
+.chip.warn { color: var(--caution); }
+.chip.flat { color: var(--muted); }
+.chip::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+/* ---------- verdict ---------- */
+.verdict {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.verdict h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 500;
+}
+
+.verdict p { margin: 0; max-width: 74ch; color: var(--ink-2); }
+.verdict strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- tooltip ---------- */
+.tip {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .1s;
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 3px;
+  padding: 9px 11px;
+  box-shadow: var(--shadow-lg);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  z-index: 60;
+  min-width: 150px;
+}
+
+.tip.on { opacity: 1; }
+.tip-head { color: var(--muted); margin-bottom: 6px; letter-spacing: .04em; }
+.tip-row { display: flex; align-items: center; gap: 7px; justify-content: space-between; }
+.tip-name { display: flex; align-items: center; gap: 6px; color: var(--ink-2); }
+.tip-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+
+/* ---------- tables ---------- */
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+
+th {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: right;
+  padding: 0 12px 10px;
+  border-bottom: 1px solid var(--hairline-strong);
+  white-space: nowrap;
+}
+
+th:first-child, td:first-child { text-align: left; padding-left: 0; }
+th:last-child, td:last-child { padding-right: 0; }
+
+td {
+  padding: 10px 12px;
+  text-align: right;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+td.name { font-family: var(--sans); color: var(--ink); }
+tr.highlight td { background: var(--surface-2); }
+tr.highlight td.name { font-weight: 600; }
+tr.reference td { color: var(--muted); font-style: italic; }
+tbody tr:last-child td { border-bottom: none; }
+
+.bar-cell { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+.bar-track { width: 62px; height: 6px; background: var(--surface-2); border-radius: 3px; overflow: hidden; flex: none; }
+.bar-fill { height: 100%; border-radius: 3px; }
+
+.two-up { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 20px; }
+
+/* ---------- caveats ---------- */
+.caveats { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+.caveats li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 14px;
+  color: var(--ink-2);
+  max-width: 78ch;
+}
+
+.caveats .marker { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: .08em; }
+
+footer {
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline);
+  font-size: 12.5px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.foot-links { display: flex; gap: 8px; align-items: baseline; }
+.foot-links a { color: var(--accent); text-decoration: none; }
+.foot-links a:hover { text-decoration: underline; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+@media (max-width: 640px) {
+  .masthead { padding: 52px 0 26px; }
+  .lang { top: 14px; }
+  .wrap { padding: 0 16px 64px; }
+  .kpi-value { font-size: 25px; }
+  .call-prob { font-size: 46px; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="lang">
+      <button class="lang-btn" data-lang="pt" aria-pressed="true">PT</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <div class="eyebrow" data-i18n="eyebrow"></div>
+    <h1>Market<br><span class="thin">Direction</span></h1>
+    <p class="standfirst" data-i18n="standfirst"></p>
+  </header>
+
+  <div class="controls">
+    <div class="tabs" role="tablist" aria-label="Market">
+      <button class="tab" role="tab" data-market="BR" aria-selected="true" data-i18n="tabBR"></button>
+      <button class="tab" role="tab" data-market="US" aria-selected="false" data-i18n="tabUS"></button>
+    </div>
+    <div class="period" id="period"></div>
+  </div>
+
+  <!-- ============ PRINCIPAL: historico + previsao ============ -->
+  <section id="terminal-section">
+    <div class="sec-head">
+      <h2 class="sec-title" data-i18n="terminalTitle"></h2>
+      <p class="sec-note" data-i18n="terminalNote"></p>
+    </div>
+
+    <div class="picker">
+      <div class="chips" id="ticker-chips" role="tablist" aria-label="Ticker"></div>
+      <div class="range" role="group" aria-label="Range">
+        <button class="range-btn" data-days="22" aria-pressed="true" data-i18n="range1m"></button>
+        <button class="range-btn" data-days="66" aria-pressed="false" data-i18n="range3m"></button>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="card">
+        <div class="chart-head">
+          <div>
+            <p class="chart-title" id="candle-title"></p>
+            <p class="chart-sub" id="candle-sub"></p>
+          </div>
+          <div class="legend">
+            <span class="legend-item"><span class="swatch box" style="background:var(--c1)"></span><span data-i18n="legendUp"></span></span>
+            <span class="legend-item"><span class="swatch box" style="background:var(--c2)"></span><span data-i18n="legendDown"></span></span>
+            <span class="legend-item"><span class="swatch box hollow"></span><span data-i18n="legendWrong"></span></span>
+          </div>
+        </div>
+
+        <svg class="plot" id="candle-plot" role="img"></svg>
+        <div class="candle-stats" id="candle-stats"></div>
+      </div>
+
+      <aside class="call" id="call-panel"></aside>
+    </div>
+  </section>
+
+  <!-- ============ TODAS AS PREVISOES ============ -->
+  <section id="signals-section">
+    <div class="sec-head">
+      <h2 class="sec-title" data-i18n="signalsTitle"></h2>
+      <p class="sec-note" id="signals-note"></p>
+    </div>
+    <div class="signal-grid" id="signals"></div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title" data-i18n="howTitle"></h2>
+      <p class="sec-note" data-i18n="howNote"></p>
+    </div>
+    <div class="how-grid">
+      <div class="how">
+        <span class="how-n">01</span>
+        <h3 data-i18n="h1h"></h3>
+        <p data-i18n="h1p"></p>
+        <span class="proof" id="proof-features"></span>
+      </div>
+      <div class="how">
+        <span class="how-n">02</span>
+        <h3 data-i18n="h2h"></h3>
+        <p data-i18n="h2p"></p>
+        <span class="proof" id="proof-folds"></span>
+      </div>
+      <div class="how">
+        <span class="how-n">03</span>
+        <h3 data-i18n="h3h"></h3>
+        <p data-i18n="h3p"></p>
+        <span class="proof" data-i18n="h3proof"></span>
+      </div>
+      <div class="how">
+        <span class="how-n">04</span>
+        <h3 data-i18n="h4h"></h3>
+        <p data-i18n="h4p"></p>
+        <span class="proof" data-i18n="h4proof"></span>
+      </div>
+      <div class="how">
+        <span class="how-n">05</span>
+        <h3 data-i18n="h5h"></h3>
+        <p data-i18n="h5p"></p>
+        <span class="proof" id="proof-cost"></span>
+      </div>
+      <div class="how">
+        <span class="how-n">06</span>
+        <h3 data-i18n="h6h"></h3>
+        <p data-i18n="h6p"></p>
+        <span class="proof" data-i18n="h6proof"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULTADO ============ -->
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title" data-i18n="scoreTitle"></h2>
+      <p class="sec-note" id="scoreboard-note"></p>
+    </div>
+
+    <div class="verdict">
+      <h3 data-i18n="verdictLabel"></h3>
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section>
+    <div class="card">
+      <div class="chart-head">
+        <div>
+          <p class="chart-title" data-i18n="equityTitle"></p>
+          <p class="chart-sub" id="equity-sub"></p>
+        </div>
+        <div class="legend" id="equity-legend"></div>
+      </div>
+      <svg class="plot" id="equity-plot" role="img"></svg>
+    </div>
+  </section>
+
+  <section>
+    <div class="two-up">
+      <div class="card">
+        <div class="chart-head">
+          <div>
+            <p class="chart-title" data-i18n="calibTitle"></p>
+            <p class="chart-sub" id="calib-sub"></p>
+          </div>
+        </div>
+        <svg class="plot" id="calib-plot" role="img"></svg>
+      </div>
+
+      <div class="card">
+        <div class="chart-head">
+          <div>
+            <p class="chart-title" data-i18n="foldTitle"></p>
+            <p class="chart-sub" id="fold-sub"></p>
+          </div>
+        </div>
+        <svg class="plot" id="fold-plot" role="img"></svg>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title" data-i18n="modelsTitle"></h2>
+      <p class="sec-note" data-i18n="modelsNote"></p>
+    </div>
+    <div class="card table-scroll">
+      <table id="models-table">
+        <thead><tr id="models-head"></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title" data-i18n="tickerTitle"></h2>
+      <p class="sec-note" data-i18n="tickerNote"></p>
+    </div>
+    <div class="card table-scroll">
+      <table id="ticker-table">
+        <thead><tr id="ticker-head"></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title" data-i18n="caveatTitle"></h2>
+    </div>
+    <ul class="caveats" id="caveats"></ul>
+  </section>
+
+  <footer>
+    <div data-i18n-html="disclaimer"></div>
+    <div id="build-stamp"></div>
+    <div class="foot-links">
+      <a href="https://github.com/madeiragab/market-direction" target="_blank" rel="noopener" data-i18n="repoLink"></a>
+      <span aria-hidden="true">·</span>
+      <a href="https://madeiragab.github.io" target="_blank" rel="noopener" data-i18n="portfolioLink"></a>
+    </div>
+  </footer>
+</div>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script id="payload" type="application/json">/*__PAYLOAD__*/</script>
+<script>
+(function () {
+  "use strict";
+
+  var DATA = JSON.parse(document.getElementById("payload").textContent);
+
+  // ------------------------------------------------------------------
+  // i18n. Static copy is keyed by data-i18n; anything that mixes copy
+  // with a computed number is a function of the numbers.
+  // ------------------------------------------------------------------
+  var I18N = {
+    pt: {
+      locale: "pt-BR",
+      eyebrow: "B3 · S&P 500 · próximo pregão · validado fora da amostra",
+      standfirst: "Alta ou queda de cada ação no próximo pregão, com o histórico do papel e a chamada do modelo em cada dia — mais a medição honesta de quanto essa previsão realmente vale.",
+      tabBR: "B3 · Brasil",
+      tabUS: "S&P 500 · EUA",
+
+      terminalTitle: "Histórico e previsão",
+      terminalNote: "Escolha o papel. O candle é o pregão; a barrinha embaixo é o que o modelo disse na véspera — cheia quando acertou, só contornada quando errou. À direita, a chamada para o próximo pregão.",
+      range1m: "1 mês",
+      range3m: "3 meses",
+      legendUp: "alta",
+      legendDown: "queda",
+      legendWrong: "chamada errada",
+
+      callLabel: "Próximo pregão",
+      callAfter: "após o fechamento de",
+      dirUp: "alta",
+      dirDown: "queda",
+      dirFlat: "sem posição",
+      callExplainUp: "O modelo vê mais chance de alta do que de queda, mas por pouco.",
+      callExplainDown: "O modelo vê mais chance de queda do que de alta, mas por pouco.",
+      callExplainFlat: "Perto demais de 50% para valer uma posição. O sistema fica de fora.",
+      rowLastClose: "último fechamento",
+      rowThreshold: "limiar para operar",
+      rowHitTicker: "acerto neste papel",
+      rowHitAll: "acerto do modelo",
+      rowTrained: "treinado em",
+      rowsRows: "linhas",
+      callWarnLead: "Leia com desconfiança.",
+      callWarn: "A vantagem medida sobre jogar uma moeda é de menos de um ponto percentual, e a estratégia não bate comprar e segurar. Isto é um experimento de medição, não conselho de investimento.",
+      noCall: "Sem previsão disponível para este papel.",
+
+      signalsTitle: "Todas as previsões do próximo pregão",
+      howTitle: "O que sustenta esse número",
+      howNote: "Previsão de bolsa é fácil de fazer e difícil de acreditar. Cada card abaixo é um cuidado que separa uma acurácia real de uma inventada — todos executáveis, nenhum só declarado.",
+
+      h1h: "44 features causais",
+      h1p: "Retornos, volatilidade, RSI, MACD, ATR, volume, contexto do índice e ranks entre os papéis do dia. Regra única: nenhuma coluna pode depender de dado posterior ao fechamento de hoje.",
+      h2h: "Validação walk-forward",
+      h2p: "Nada de split aleatório — isso deixaria o modelo treinar em segunda e quarta para prever terça. Aqui ele treina até uma data, testa no trimestre seguinte e avança, com um dia de embargo no meio.",
+      h3h: "Auditoria de vazamento",
+      h3p: "As features são recalculadas com o histórico truncado numa data e comparadas com as mesmas features sobre o histórico inteiro. Qualquer janela que espie o futuro aparece como diferença.",
+      h3proof: "diferença medida: 0.000e+00",
+      h4h: "Probabilidade calibrada",
+      h4p: "Dizer 62% e acertar 52% é mentir com decimais. O calibrador é ajustado na fatia final do treino, cortada por data, e foi escolhido medindo Brier e ECE — não por preferência.",
+      h4proof: "Platt vence isotônica: ECE 0,0127 contra 0,0183",
+      h5h: "Custo de transação",
+      h5p: "Estratégia de giro alto morre no spread. O custo é cobrado sobre a mudança de peso, nunca sobre o peso — manter posição aberta não paga corretagem de novo.",
+      h6h: "Baselines honestos",
+      h6p: "53% de acerto parece habilidade até você descobrir que 53% dos dias subiram. Por isso o placar inclui chutar alta sempre, repetir o sinal de ontem e aleatório.",
+      h6proof: "sempre alta reproduz o buy & hold, como esperado",
+
+      scoreTitle: "O placar, sem maquiagem",
+      verdictLabel: "Veredito",
+
+      equityTitle: "Capital fora da amostra, líquido de custo",
+      calibTitle: "A probabilidade vale o que diz?",
+      foldTitle: "O acerto é estável ou foi um surto?",
+      modelsTitle: "Todos os modelos, lado a lado",
+      modelsNote: "Os três primeiros são baselines. Um modelo que não os bate não aprendeu nada — e sempre alta existe justamente para reproduzir comprar e segurar pagando custo.",
+      tickerTitle: "Acerto por papel",
+      tickerNote: "A barra mede a distância de 50%. Espalhamento em torno da moeda é o esperado; um papel muito acima dos outros seria sinal de sorte, não de habilidade.",
+      caveatTitle: "O que estes números ainda não contam",
+
+      caveats: [
+        ["Preços ajustados retroativamente.", "O ajuste por proventos de hoje reescreve o preço de anos atrás, então o histórico carrega uma pitada de informação futura. Some só com dado não ajustado datado."],
+        ["Viés de sobrevivência.", "O universo é fixo e feito de papéis que existem hoje. Quem quebrou no caminho não está no teste — o que empurra para cima inclusive o retorno do comprar e segurar."],
+        ["Custo é estimativa.", "Razoável para papel líquido, otimista para papel fino. Sem impacto de mercado modelado."],
+        ["Sem imposto.", "15% sobre ganho em swing trade na B3, 20% em day trade. Nenhum dos dois entra na conta."],
+        ["Execução no leilão de fechamento.", "O modo padrão decide no fechamento de hoje e sai no fechamento de amanhã. Existe um modo alternativo que entra na abertura seguinte, sem essa hipótese, ao custo de descartar o retorno overnight."]
+      ],
+
+      disclaimer: "Projeto de estudo e portfólio. Nada aqui é recomendação de investimento — os números acima descrevem um sistema que <strong>não bate comprar e segurar</strong>.",
+      repoLink: "Código no GitHub",
+      portfolioLink: "Portfólio",
+
+      modelsHead: ["modelo", "acurácia", "acurácia balanceada", "AUC", "Brier", "p vs moeda", "Sharpe líquido", "CAGR", "exposição"],
+      tickerHead: ["papel", "acurácia", "vantagem sobre a moeda", "taxa de alta", "previsões"],
+      buyHold: "comprar e segurar",
+      models: {
+        always_up: "sempre alta", prev_sign: "sinal de ontem", random: "aleatório",
+        logistic: "logística", lightgbm: "LightGBM", majority: "classe majoritária"
+      },
+
+      kpiAcc: "acurácia direcional",
+      kpiBal: "acurácia balanceada",
+      kpiP: "p vs jogar moeda",
+      kpiSharpe: "Sharpe líquido",
+      chipVsCoin: "p.p. vs moeda",
+      chipAbove: "acima da moeda",
+      chipBelow: "abaixo da moeda",
+      chipSig: "significante",
+      chipChance: "cabe no acaso",
+      chipBeats: "bate buy & hold",
+      chipLoses: "perde do buy & hold",
+
+      statReturn: "retorno do papel",
+      statHits: "chamadas certas",
+      statAcc: "acerto no período",
+      statTraded: "dias em que operou",
+      of: "de",
+
+      tipOpen: "abertura", tipHigh: "máxima", tipLow: "mínima", tipClose: "fechamento",
+      tipPredicted: "modelo previu", tipNextDay: "dia seguinte", tipOutcome: "resultado",
+      tipTraded: "operou", tipYes: "sim", tipNo: "ficou fora",
+      tipHit: "acertou", tipMiss: "errou", tipUp: "alta", tipDown: "queda",
+      tipBucket: "faixa de probabilidade", tipPred: "previsto", tipObs: "observado",
+      tipCount: "previsões", tipBlock: "bloco iniciado em", tipAccuracy: "acurácia",
+      tipVsCoin: "vs moeda", tipPP: "p.p.",
+      buy: "compra", sell: "venda", out: "fora", close: "fech.",
+      perfectCalib: "calibração perfeita",
+      calibAxis: "probabilidade prevista  →  frequência observada (eixo vertical)",
+      logScale: "escala logarítmica",
+      costPerSide: "custo de", bpsPerSide: "bps por lado", to: "a"
+    },
+
+    en: {
+      locale: "en-US",
+      eyebrow: "B3 · S&P 500 · next session · validated out of sample",
+      standfirst: "Up or down for each stock on the next session, with the ticker's history and the model's call on every day — plus the honest measurement of what that prediction is actually worth.",
+      tabBR: "B3 · Brazil",
+      tabUS: "S&P 500 · US",
+
+      terminalTitle: "History and prediction",
+      terminalNote: "Pick a ticker. The candle is the session; the small bar below it is what the model said the day before — solid when it was right, outlined when it was wrong. On the right, the call for the next session.",
+      range1m: "1 month",
+      range3m: "3 months",
+      legendUp: "up",
+      legendDown: "down",
+      legendWrong: "wrong call",
+
+      callLabel: "Next session",
+      callAfter: "after the close of",
+      dirUp: "up",
+      dirDown: "down",
+      dirFlat: "no position",
+      callExplainUp: "The model sees a better chance of up than down — but only just.",
+      callExplainDown: "The model sees a better chance of down than up — but only just.",
+      callExplainFlat: "Too close to 50% to justify a position. The system stays out.",
+      rowLastClose: "last close",
+      rowThreshold: "threshold to trade",
+      rowHitTicker: "accuracy on this ticker",
+      rowHitAll: "model accuracy",
+      rowTrained: "trained on",
+      rowsRows: "rows",
+      callWarnLead: "Read this with suspicion.",
+      callWarn: "The measured edge over a coin flip is under one percentage point, and the strategy does not beat buy and hold. This is a measurement experiment, not investment advice.",
+      noCall: "No prediction available for this ticker.",
+
+      signalsTitle: "Every prediction for the next session",
+      howTitle: "What holds that number up",
+      howNote: "Stock prediction is easy to produce and hard to believe. Each card below is one safeguard that separates a real accuracy from an invented one — all of them executable, none merely asserted.",
+
+      h1h: "44 causal features",
+      h1p: "Returns, volatility, RSI, MACD, ATR, volume, index context and ranks across the day's tickers. One rule: no column may depend on data later than today's close.",
+      h2h: "Walk-forward validation",
+      h2p: "No random split — that would let the model train on Monday and Wednesday to predict Tuesday. Here it trains up to a date, tests on the next quarter and moves forward, with a one-day embargo in between.",
+      h3h: "Leakage audit",
+      h3p: "The features are recomputed on history truncated at a date and compared against the same features over the full history. Any window that peeks forward shows up as a difference.",
+      h3proof: "measured difference: 0.000e+00",
+      h4h: "Calibrated probability",
+      h4p: "Saying 62% and being right 52% of the time is lying with decimal places. The calibrator is fitted on the final slice of the training window, cut by date, and was chosen by measuring Brier and ECE.",
+      h4proof: "Platt beats isotonic: ECE 0.0127 vs 0.0183",
+      h5h: "Transaction cost",
+      h5p: "A high-turnover strategy dies in the spread. Cost is charged on the change in weight, never on the weight — holding a position open does not pay commission again.",
+      h6h: "Honest baselines",
+      h6p: "53% accuracy looks like skill until you learn that 53% of days were up. That is why the scoreboard includes always guess up, repeat yesterday's sign and random.",
+      h6proof: "always-up reproduces buy & hold, as expected",
+
+      scoreTitle: "The scoreboard, no makeup",
+      verdictLabel: "Verdict",
+
+      equityTitle: "Out-of-sample equity, net of cost",
+      calibTitle: "Is the probability worth what it says?",
+      foldTitle: "Is the edge stable, or was it a burst?",
+      modelsTitle: "Every model, side by side",
+      modelsNote: "The first three are baselines. A model that fails to beat them learned nothing — and always up exists precisely to reproduce buy and hold while paying cost.",
+      tickerTitle: "Accuracy per ticker",
+      tickerNote: "The bar measures distance from 50%. Scatter around the coin flip is expected; one ticker far above the rest would signal luck, not skill.",
+      caveatTitle: "What these numbers still don't tell you",
+
+      caveats: [
+        ["Retroactively adjusted prices.", "Today's dividend adjustment rewrites prices from years ago, so the history carries a trace of future information. It only disappears with point-in-time unadjusted data."],
+        ["Survivorship bias.", "The universe is fixed and made of tickers that exist today. Whoever went under along the way is not in the test — which pushes returns up, buy and hold included."],
+        ["Cost is an estimate.", "Reasonable for a liquid name, optimistic for a thin one. No market impact modelled."],
+        ["No taxes.", "15% on swing-trade gains in Brazil, 20% on day trades. Neither enters the calculation."],
+        ["Execution in the closing auction.", "The default mode decides at today's close and exits at tomorrow's close. An alternative mode enters at the next open, dropping that assumption at the cost of discarding the overnight return."]
+      ],
+
+      disclaimer: "Study and portfolio project. Nothing here is investment advice — the numbers above describe a system that <strong>does not beat buy and hold</strong>.",
+      repoLink: "Source on GitHub",
+      portfolioLink: "Portfolio",
+
+      modelsHead: ["model", "accuracy", "balanced accuracy", "AUC", "Brier", "p vs coin", "net Sharpe", "CAGR", "exposure"],
+      tickerHead: ["ticker", "accuracy", "edge over the coin", "up rate", "predictions"],
+      buyHold: "buy and hold",
+      models: {
+        always_up: "always up", prev_sign: "yesterday's sign", random: "random",
+        logistic: "logistic", lightgbm: "LightGBM", majority: "majority class"
+      },
+
+      kpiAcc: "directional accuracy",
+      kpiBal: "balanced accuracy",
+      kpiP: "p vs a coin flip",
+      kpiSharpe: "net Sharpe",
+      chipVsCoin: "p.p. vs coin",
+      chipAbove: "above the coin",
+      chipBelow: "below the coin",
+      chipSig: "significant",
+      chipChance: "fits in chance",
+      chipBeats: "beats buy & hold",
+      chipLoses: "loses to buy & hold",
+
+      statReturn: "ticker return",
+      statHits: "correct calls",
+      statAcc: "accuracy in period",
+      statTraded: "days it traded",
+      of: "of",
+
+      tipOpen: "open", tipHigh: "high", tipLow: "low", tipClose: "close",
+      tipPredicted: "model predicted", tipNextDay: "next day", tipOutcome: "outcome",
+      tipTraded: "traded", tipYes: "yes", tipNo: "stayed out",
+      tipHit: "hit", tipMiss: "miss", tipUp: "up", tipDown: "down",
+      tipBucket: "probability bucket", tipPred: "predicted", tipObs: "observed",
+      tipCount: "predictions", tipBlock: "block starting", tipAccuracy: "accuracy",
+      tipVsCoin: "vs coin", tipPP: "p.p.",
+      buy: "buy", sell: "sell", out: "out", close: "close",
+      perfectCalib: "perfect calibration",
+      calibAxis: "predicted probability  →  observed frequency (vertical axis)",
+      logScale: "log scale",
+      costPerSide: "cost of", bpsPerSide: "bps per side", to: "to"
+    }
+  };
+
+  var lang = (navigator.language || "en").toLowerCase().indexOf("pt") === 0 ? "pt" : "en";
+  function T() { return I18N[lang]; }
+  function modelLabel(key) { return T().models[key] || key; }
+
+  // Fixed categorical order: every model keeps its colour for good, so
+  // switching markets never repaints anyone.
+  var SERIES = [
+    { key: "logistic",  color: "var(--c1)" },
+    { key: "lightgbm",  color: "var(--c2)" },
+    { key: "prev_sign", color: "var(--c3)" },
+    { key: "random",    color: "var(--c4)" }
+  ];
+  var REFERENCE = { key: "buy_and_hold", color: "var(--reference)" };
+
+  var NS = "http://www.w3.org/2000/svg";
+  var tip = document.getElementById("tip");
+  var market = "BR";
+  var ticker = null;
+  var rangeDays = 22;
+
+  // ---------- formatting ----------
+  function pct(x, nd) {
+    if (x === null || x === undefined || isNaN(x)) return "—";
+    var d = nd === undefined ? 2 : nd;
+    return (x * 100).toLocaleString(T().locale,
+      { minimumFractionDigits: d, maximumFractionDigits: d }) + "%";
+  }
+  function num(x, nd) {
+    if (x === null || x === undefined || isNaN(x)) return "—";
+    return x.toLocaleString(T().locale, { minimumFractionDigits: nd, maximumFractionDigits: nd });
+  }
+  function int(x) { return x.toLocaleString(T().locale); }
+  function signed(x, nd) {
+    if (x === null || x === undefined || isNaN(x)) return "—";
+    return (x >= 0 ? "+" : "") + num(x, nd);
+  }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function svg(tag, attrs) {
+    var n = document.createElementNS(NS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function showTip(html, evt) {
+    tip.innerHTML = html;
+    tip.classList.add("on");
+    var r = tip.getBoundingClientRect();
+    var x = evt.clientX + 14;
+    var y = evt.clientY - r.height - 12;
+    if (x + r.width > window.innerWidth - 8) x = evt.clientX - r.width - 14;
+    if (y < 8) y = evt.clientY + 18;
+    tip.style.left = x + "px";
+    tip.style.top = y + "px";
+  }
+  function hideTip() { tip.classList.remove("on"); }
+
+  function row(name, value, color) {
+    return "<div class='tip-row'><span class='tip-name'>" +
+      (color ? "<i class='tip-dot' style='background:" + color + "'></i>" : "") +
+      name + "</span><span>" + value + "</span></div>";
+  }
+
+  // ---------- static copy ----------
+  function applyStatic() {
+    var t = T();
+    document.querySelectorAll("[data-i18n]").forEach(function (n) {
+      var v = t[n.dataset.i18n];
+      if (typeof v === "string") n.textContent = v;
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(function (n) {
+      var v = t[n.dataset.i18nHtml];
+      if (typeof v === "string") n.innerHTML = v;
+    });
+
+    var caveats = document.getElementById("caveats");
+    clear(caveats);
+    t.caveats.forEach(function (c, i) {
+      var li = el("li");
+      li.appendChild(el("span", "marker", String(i + 1).padStart(2, "0")));
+      var span = el("span");
+      span.innerHTML = "<strong>" + esc(c[0]) + "</strong> " + esc(c[1]);
+      li.appendChild(span);
+      caveats.appendChild(li);
+    });
+
+    [["models-head", t.modelsHead], ["ticker-head", t.tickerHead]].forEach(function (p) {
+      var tr = document.getElementById(p[0]);
+      clear(tr);
+      p[1].forEach(function (h) { tr.appendChild(el("th", null, h)); });
+    });
+
+    document.getElementById("candle-plot").setAttribute("aria-label", t.terminalTitle);
+    document.getElementById("equity-plot").setAttribute("aria-label", t.equityTitle);
+    document.getElementById("calib-plot").setAttribute("aria-label", t.calibTitle);
+    document.getElementById("fold-plot").setAttribute("aria-label", t.foldTitle);
+  }
+
+  // ---------- verdict ----------
+  function renderVerdict() {
+    var br = DATA.markets.BR, us = DATA.markets.US;
+    var brLog = br.results.logistic, usLog = us.results.logistic;
+    var node = document.getElementById("verdict-text");
+
+    if (lang === "pt") {
+      node.innerHTML =
+        "Na B3 existe um sinal real e minúsculo: a regressão logística acerta <strong>" +
+        pct(brLog.classification.accuracy) + "</strong> contra os 50% da moeda, com p = <strong>" +
+        num(brLog.classification.p_value_vs_coin, 4) + "</strong> em " + int(br.n_predictions) +
+        " previsões. É estatisticamente detectável e economicamente irrelevante. Nos EUA nem isso: " +
+        "a acurácia de " + pct(usLog.classification.accuracy) + " some quando se lembra que <strong>" +
+        pct(us.results.always_up.classification.base_rate_up) + "</strong> dos dias subiram — a " +
+        "acurácia balanceada é <strong>" + pct(usLog.classification.balanced_accuracy) +
+        "</strong>. Em nenhum dos dois mercados uma estratégia bateu comprar e segurar.";
+    } else {
+      node.innerHTML =
+        "In Brazil there is a real and tiny signal: logistic regression is right <strong>" +
+        pct(brLog.classification.accuracy) + "</strong> of the time against the coin's 50%, with p = <strong>" +
+        num(brLog.classification.p_value_vs_coin, 4) + "</strong> over " + int(br.n_predictions) +
+        " predictions. Statistically detectable, economically irrelevant. In the US not even that: " +
+        "the " + pct(usLog.classification.accuracy) + " accuracy evaporates once you remember that <strong>" +
+        pct(us.results.always_up.classification.base_rate_up) + "</strong> of days were up — balanced " +
+        "accuracy is <strong>" + pct(usLog.classification.balanced_accuracy) +
+        "</strong>. In neither market did a strategy beat buy and hold.";
+    }
+  }
+
+  // ---------- helpers shared by the call panel ----------
+  function livePredictions() {
+    return (DATA.latest && DATA.latest.markets && DATA.latest.markets[market]) || null;
+  }
+  function liveFor(name) {
+    var live = livePredictions();
+    if (!live) return null;
+    for (var i = 0; i < live.predictions.length; i++) {
+      if (live.predictions[i].ticker === name) return live.predictions[i];
+    }
+    return null;
+  }
+  function tickerAccuracy(name) {
+    var m = DATA.markets[market];
+    for (var i = 0; i < m.per_ticker.length; i++) {
+      if (m.per_ticker[i].ticker === name) return m.per_ticker[i];
+    }
+    return null;
+  }
+
+  // ---------- the call panel: the page's headline ----------
+  function renderCall() {
+    var t = T();
+    var panel = document.getElementById("call-panel");
+    clear(panel);
+
+    var live = livePredictions();
+    var p = ticker ? liveFor(ticker) : null;
+    var m = DATA.markets[market];
+    var th = (DATA.latest && DATA.latest.threshold) || m.config.prob_threshold;
+
+    var top = el("div", "call-top");
+    top.appendChild(el("div", "call-label", t.callLabel));
+    top.appendChild(el("div", "call-ticker", ticker || "—"));
+    if (live) top.appendChild(el("div", "call-when", t.callAfter + " " + live.as_of));
+    panel.appendChild(top);
+
+    var body = el("div", "call-body");
+
+    if (!p) {
+      body.appendChild(el("p", "call-explain", t.noCall));
+      panel.appendChild(body);
+      return;
+    }
+
+    var up = p.prob_up >= 0.5;
+    var acts = p.prob_up >= th || p.prob_up <= 1 - th;
+    var dirCls = acts ? (up ? "up" : "down") : "flat";
+    var dirTxt = acts ? (up ? t.dirUp : t.dirDown) : t.dirFlat;
+
+    var verdict = el("div", "call-verdict");
+    var prob = el("div", "call-prob", pct(p.prob_up, 1));
+    prob.style.color = acts ? (up ? "var(--c1)" : "var(--c2)") : "var(--ink)";
+    verdict.appendChild(prob);
+    verdict.appendChild(el("span", "call-dir " + dirCls, dirTxt));
+    body.appendChild(verdict);
+
+    body.appendChild(el("p", "call-explain",
+      acts ? (up ? t.callExplainUp : t.callExplainDown) : t.callExplainFlat));
+
+    // A escala vai de 35% a 65% porque e onde as probabilidades realmente
+    // caem. Mostrar 0-100% faria toda previsao parecer colada no meio.
+    var LO = 0.35, HI = 0.65;
+    var posMid = ((0.5 - LO) / (HI - LO)) * 100;
+    var posP = ((Math.max(LO, Math.min(HI, p.prob_up)) - LO) / (HI - LO)) * 100;
+
+    var gauge = el("div", "gauge");
+    var track = el("div", "gauge-track");
+    var fill = el("div", "gauge-fill");
+    fill.style.left = Math.min(posMid, posP) + "%";
+    fill.style.width = Math.abs(posP - posMid) + "%";
+    fill.style.background = up ? "var(--c1)" : "var(--c2)";
+    track.appendChild(fill);
+    var mid = el("div", "gauge-mid");
+    mid.style.left = posMid + "%";
+    track.appendChild(mid);
+    gauge.appendChild(track);
+    var scale = el("div", "gauge-scale");
+    scale.appendChild(el("span", null, pct(LO, 0)));
+    scale.appendChild(el("span", null, "50%"));
+    scale.appendChild(el("span", null, pct(HI, 0)));
+    gauge.appendChild(scale);
+    body.appendChild(gauge);
+
+    var acc = tickerAccuracy(ticker);
+    var best = m.results[m.best_model] || m.results.logistic;
+
+    var rows = el("div", "call-rows");
+    [
+      [t.rowLastClose, num(p.last_close, 2)],
+      [t.rowThreshold, pct(th, 0)],
+      [t.rowHitTicker, acc ? pct(acc.accuracy, 1) + "  (" + int(acc.n) + ")" : "—"],
+      [t.rowHitAll, pct(best.classification.accuracy, 2)],
+      [t.rowTrained, live ? int(live.n_train) + " " + t.rowsRows : "—"]
+    ].forEach(function (r) {
+      var line = el("div", "call-row");
+      line.appendChild(el("span", null, r[0]));
+      line.appendChild(el("span", null, r[1]));
+      rows.appendChild(line);
+    });
+    body.appendChild(rows);
+
+    panel.appendChild(body);
+
+    var warn = el("p", "call-warn");
+    warn.innerHTML = "<strong>" + esc(t.callWarnLead) + "</strong> " + esc(t.callWarn);
+    panel.appendChild(warn);
+  }
+
+  // ---------- candles + model calls ----------
+  function historyFor(mk) {
+    return (DATA.history && DATA.history.markets && DATA.history.markets[mk]) || null;
+  }
+
+  function selectTicker(name) {
+    ticker = name;
+    renderChips();
+    renderCandles();
+    renderCall();
+    renderSignals();
+  }
+
+  function renderChips() {
+    var hist = historyFor(market);
+    var box = document.getElementById("ticker-chips");
+    clear(box);
+    if (!hist) return;
+
+    var names = Object.keys(hist).sort();
+    if (names.indexOf(ticker) === -1) ticker = names[0];
+
+    names.forEach(function (name) {
+      var b = el("button", "chip-btn", name.replace(".SA", ""));
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", String(name === ticker));
+      b.addEventListener("click", function () { selectTicker(name); });
+      box.appendChild(b);
+    });
+  }
+
+  function renderCandles() {
+    var t = T();
+    var hist = historyFor(market);
+    var section = document.getElementById("terminal-section");
+    if (!hist || !ticker || !hist[ticker]) {
+      section.style.display = "none";
+      return;
+    }
+    section.style.display = "";
+
+    var rows = hist[ticker].slice(-rangeDays);
+    var plot = document.getElementById("candle-plot");
+    clear(plot);
+
+    var W = plot.clientWidth || 720;
+    var H = 420;
+    var pad = { t: 12, r: 58, b: 58, l: 14 };
+    var stripH = 15;            // the model-call strip
+    var stripGap = 24;
+    var priceH = H - pad.t - pad.b - stripH - stripGap;
+
+    plot.setAttribute("viewBox", "0 0 " + W + " " + H);
+    plot.setAttribute("height", H);
+
+    var lo = Infinity, hi = -Infinity;
+    rows.forEach(function (r) { if (r.l < lo) lo = r.l; if (r.h > hi) hi = r.h; });
+    var span = (hi - lo) || 1;
+    lo -= span * 0.06; hi += span * 0.06;
+
+    var innerW = W - pad.l - pad.r;
+    var slot = innerW / rows.length;
+    var bodyW = Math.max(2, Math.min(16, slot - 2)); // 2px of air between candles
+
+    function X(i) { return pad.l + i * slot + slot / 2; }
+    function Y(v) { return pad.t + (1 - (v - lo) / (hi - lo)) * priceH; }
+
+    // price axis on the right, so it doesn't push the candles around
+    var steps = 4;
+    for (var s = 0; s <= steps; s++) {
+      var v = lo + (hi - lo) * (s / steps);
+      var y = Y(v);
+      plot.appendChild(svg("line", { class: "grid", x1: pad.l, x2: W - pad.r, y1: y, y2: y }));
+      var tx = svg("text", { x: W - pad.r + 8, y: y + 3.5 });
+      tx.textContent = num(v, 2);
+      plot.appendChild(tx);
+    }
+
+    var everyN = Math.max(1, Math.round(rows.length / 8));
+    rows.forEach(function (r, i) {
+      if (i % everyN !== 0) return;
+      var tx = svg("text", { x: X(i), y: pad.t + priceH + 16, "text-anchor": "middle" });
+      tx.textContent = lang === "pt"
+        ? r.d.slice(8, 10) + "/" + r.d.slice(5, 7)
+        : r.d.slice(5, 7) + "/" + r.d.slice(8, 10);
+      plot.appendChild(tx);
+    });
+
+    var stripY = pad.t + priceH + stripGap + 8;
+    var lbl = svg("text", { x: W - pad.r + 8, y: stripY + stripH / 2 + 3.5 });
+    lbl.textContent = lang === "pt" ? "modelo" : "model";
+    plot.appendChild(lbl);
+
+    rows.forEach(function (r, i) {
+      var up = r.c >= r.o;
+      var color = up ? "var(--c1)" : "var(--c2)";
+      var g = svg("g", { style: "cursor:pointer" });
+
+      g.appendChild(svg("line", {
+        x1: X(i), x2: X(i), y1: Y(r.h), y2: Y(r.l),
+        stroke: color, "stroke-width": 1.5, "stroke-linecap": "round"
+      }));
+
+      var yTop = Y(Math.max(r.o, r.c));
+      var bodyH = Math.max(1.5, Math.abs(Y(r.o) - Y(r.c)));
+      g.appendChild(svg("rect", {
+        x: X(i) - bodyW / 2, y: yTop, width: bodyW, height: bodyH, fill: color, rx: 1
+      }));
+
+      // the previous day's call, aligned under the session it predicted
+      if (r.p !== undefined) {
+        var predUp = r.p >= 0.5;
+        var hit = (predUp ? 1 : 0) === r.y;
+        var callColor = predUp ? "var(--c1)" : "var(--c2)";
+        var sq = svg("rect", {
+          x: X(i) - bodyW / 2, y: stripY, width: bodyW, height: stripH, rx: 1
+        });
+        if (hit) {
+          sq.setAttribute("fill", callColor);
+        } else {
+          sq.setAttribute("fill", "none");
+          sq.setAttribute("stroke", callColor);
+          sq.setAttribute("stroke-width", 1.5);
+        }
+        g.appendChild(sq);
+      }
+
+      g.addEventListener("mousemove", function (evt) {
+        var html = "<div class='tip-head'>" + r.d + " · " + ticker + "</div>" +
+          row(t.tipOpen, num(r.o, 2)) + row(t.tipHigh, num(r.h, 2)) +
+          row(t.tipLow, num(r.l, 2)) + row(t.tipClose, num(r.c, 2));
+        if (r.p !== undefined) {
+          var pu = r.p >= 0.5;
+          var ht = (pu ? 1 : 0) === r.y;
+          var thr = DATA.markets[market].config.prob_threshold;
+          var traded = r.p >= thr || r.p <= 1 - thr;
+          html += "<div style='height:6px'></div>" +
+            row(t.tipPredicted, (pu ? t.tipUp : t.tipDown) + " · " + pct(r.p, 1)) +
+            row(t.tipNextDay, pct(r.r, 2)) +
+            row(t.tipOutcome, ht ? t.tipHit : t.tipMiss) +
+            row(t.tipTraded, traded ? t.tipYes : t.tipNo);
+        }
+        showTip(html, evt);
+      });
+      g.addEventListener("mouseleave", hideTip);
+      plot.appendChild(g);
+    });
+
+    // ---- period summary ----
+    var calls = rows.filter(function (r) { return r.p !== undefined; });
+    var hits = calls.filter(function (r) { return ((r.p >= 0.5) ? 1 : 0) === r.y; }).length;
+    var ret = rows.length > 1 ? rows[rows.length - 1].c / rows[0].c - 1 : 0;
+    var thr2 = DATA.markets[market].config.prob_threshold;
+    var traded = calls.filter(function (r) { return r.p >= thr2 || r.p <= 1 - thr2; }).length;
+
+    var stats = document.getElementById("candle-stats");
+    clear(stats);
+    [
+      [t.statReturn, pct(ret)],
+      [t.statHits, calls.length ? hits + " " + t.of + " " + calls.length : "—"],
+      [t.statAcc, calls.length ? pct(hits / calls.length, 1) : "—"],
+      [t.statTraded, calls.length ? traded + " " + t.of + " " + calls.length : "—"]
+    ].forEach(function (p) {
+      var d = el("div", "stat");
+      d.appendChild(el("div", "stat-k", p[0]));
+      d.appendChild(el("div", "stat-v", p[1]));
+      stats.appendChild(d);
+    });
+
+    document.getElementById("candle-title").textContent = lang === "pt"
+      ? ticker + " · últimos " + rows.length + " pregões"
+      : ticker + " · last " + rows.length + " sessions";
+    document.getElementById("candle-sub").textContent = lang === "pt"
+      ? rows[0].d + " a " + rows[rows.length - 1].d + " · probabilidades fora da amostra, do modelo " + modelLabel(DATA.history.model)
+      : rows[0].d + " to " + rows[rows.length - 1].d + " · out-of-sample probabilities from the " + modelLabel(DATA.history.model) + " model";
+  }
+
+  // ---------- next-session signals ----------
+  function renderSignals() {
+    var t = T();
+    var box = document.getElementById("signals");
+    var note = document.getElementById("signals-note");
+    clear(box);
+
+    var live = livePredictions();
+    if (!live) {
+      document.getElementById("signals-section").style.display = "none";
+      return;
+    }
+    document.getElementById("signals-section").style.display = "";
+
+    var th = DATA.latest.threshold;
+    var probs = live.predictions.map(function (p) { return p.prob_up; });
+    var lo = Math.min.apply(null, probs);
+    var hi = Math.max.apply(null, probs);
+    var span = Math.max(hi - lo, 0.02);
+
+    live.predictions.forEach(function (p) {
+      var act = p.prob_up >= th || p.prob_up <= 1 - th;
+      var card = el("button", "signal" + (act ? " act" : "") + (p.ticker === ticker ? " sel" : ""));
+      card.type = "button";
+      card.appendChild(el("div", "signal-ticker", p.ticker.replace(".SA", "")));
+
+      var pr = el("div", "signal-prob", pct(p.prob_up, 1));
+      pr.style.color = act ? (p.prob_up >= 0.5 ? "var(--c1)" : "var(--c2)") : "var(--ink)";
+      card.appendChild(pr);
+
+      var meter = el("div", "signal-meter");
+      var bar = el("i");
+      bar.style.left = "0";
+      bar.style.width = (((p.prob_up - lo) / span) * 100).toFixed(1) + "%";
+      bar.style.background = p.prob_up >= 0.5 ? "var(--c1)" : "var(--c2)";
+      meter.appendChild(bar);
+      var mark = el("u");
+      mark.style.left = (((0.5 - lo) / span) * 100).toFixed(1) + "%";
+      meter.appendChild(mark);
+      card.appendChild(meter);
+
+      card.appendChild(el("div", "signal-foot",
+        (act ? (p.prob_up >= th ? t.buy : t.sell) : t.out) + " · " + t.close + " " + num(p.last_close, 2)));
+
+      card.addEventListener("click", function () {
+        selectTicker(p.ticker);
+        document.getElementById("terminal-section").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      box.appendChild(card);
+    });
+
+    note.textContent = lang === "pt"
+      ? "Probabilidade de alta no pregão seguinte ao fechamento de " + live.as_of + ", modelo " +
+        modelLabel(DATA.latest.model) + " treinado em " + int(live.n_train) + " linhas. Clique em " +
+        "qualquer papel para ver o histórico dele acima. O traço vertical marca 50%; entra em " +
+        "posição a partir de " + pct(th, 0) + "."
+      : "Probability of an up day on the session following the close of " + live.as_of + ", " +
+        modelLabel(DATA.latest.model) + " model trained on " + int(live.n_train) + " rows. Click any " +
+        "ticker to see its history above. The vertical tick marks 50%; a position opens from " +
+        pct(th, 0) + " up.";
+  }
+
+  // ---------- equity chart ----------
+  function renderEquity(m) {
+    var t = T();
+    var plot = document.getElementById("equity-plot");
+    clear(plot);
+
+    var W = plot.clientWidth || 860, H = 340;
+    var pad = { t: 12, r: 14, b: 26, l: 46 };
+    plot.setAttribute("viewBox", "0 0 " + W + " " + H);
+    plot.setAttribute("height", H);
+
+    var dates = m.equity.dates;
+    var drawn = SERIES.filter(function (s) { return m.equity.series[s.key]; })
+                      .concat(m.equity.series[REFERENCE.key] ? [REFERENCE] : []);
+
+    var lo = Infinity, hi = -Infinity;
+    drawn.forEach(function (s) {
+      m.equity.series[s.key].forEach(function (v) {
+        if (v > 0) { if (v < lo) lo = v; if (v > hi) hi = v; }
+      });
+    });
+    // Log scale: what matters in an equity curve is proportional return, and a
+    // linear scale lets the last years swallow the first ones.
+    var l0 = Math.log(lo), l1 = Math.log(hi);
+    var padY = (l1 - l0) * 0.06;
+    l0 -= padY; l1 += padY;
+
+    function X(i) { return pad.l + (i / (dates.length - 1)) * (W - pad.l - pad.r); }
+    function Y(v) { return pad.t + (1 - (Math.log(v) - l0) / (l1 - l0)) * (H - pad.t - pad.b); }
+
+    var ticks = [0.25, 0.5, 1, 2, 3, 5, 8, 12, 20, 35, 60].filter(function (v) {
+      return v >= lo * 0.95 && v <= hi * 1.05;
+    });
+    if (ticks.length < 3) ticks = [lo, Math.sqrt(lo * hi), hi];
+    ticks.forEach(function (v) {
+      var y = Y(v);
+      plot.appendChild(svg("line", { class: "grid", x1: pad.l, x2: W - pad.r, y1: y, y2: y }));
+      var tx = svg("text", { x: pad.l - 8, y: y + 3.5, "text-anchor": "end" });
+      tx.textContent = v + "×";
+      plot.appendChild(tx);
+    });
+
+    var yearStep = Math.max(1, Math.ceil(dates.length / 252 / 8));
+    var seenYear = null;
+    dates.forEach(function (d, i) {
+      var y = d.slice(0, 4);
+      if (y !== seenYear && (+y) % yearStep === 0) {
+        seenYear = y;
+        var tx = svg("text", { x: X(i), y: H - pad.b + 16, "text-anchor": "middle" });
+        tx.textContent = y;
+        plot.appendChild(tx);
+      }
+    });
+    plot.appendChild(svg("line", {
+      class: "axis-line", x1: pad.l, x2: W - pad.r, y1: H - pad.b, y2: H - pad.b
+    }));
+
+    drawn.forEach(function (s) {
+      var vals = m.equity.series[s.key];
+      var d = "";
+      for (var i = 0; i < vals.length; i++) {
+        d += (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(vals[i]).toFixed(1);
+      }
+      var p = svg("path", { class: "series", d: d, stroke: s.color });
+      if (s.key === REFERENCE.key) p.setAttribute("stroke-dasharray", "5 4");
+      plot.appendChild(p);
+    });
+
+    var cross = svg("line", {
+      class: "grid", x1: 0, x2: 0, y1: pad.t, y2: H - pad.b,
+      stroke: "var(--hairline-strong)", opacity: 0
+    });
+    plot.appendChild(cross);
+    var dots = drawn.map(function (s) {
+      var c = svg("circle", { r: 3.5, fill: s.color, stroke: "var(--surface)", "stroke-width": 2, opacity: 0 });
+      plot.appendChild(c);
+      return c;
+    });
+
+    var hit = svg("rect", {
+      x: pad.l, y: pad.t, width: W - pad.l - pad.r, height: H - pad.t - pad.b,
+      fill: "transparent", style: "cursor:crosshair"
+    });
+    plot.appendChild(hit);
+
+    hit.addEventListener("mousemove", function (evt) {
+      var box = plot.getBoundingClientRect();
+      var rel = (evt.clientX - box.left) * (W / box.width);
+      var i = Math.round(((rel - pad.l) / (W - pad.l - pad.r)) * (dates.length - 1));
+      i = Math.max(0, Math.min(dates.length - 1, i));
+
+      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i));
+      cross.setAttribute("opacity", 1);
+
+      var html = "<div class='tip-head'>" + dates[i] + "</div>";
+      drawn.forEach(function (s, k) {
+        var v = m.equity.series[s.key][i];
+        dots[k].setAttribute("cx", X(i));
+        dots[k].setAttribute("cy", Y(v));
+        dots[k].setAttribute("opacity", 1);
+        var name = s.key === REFERENCE.key ? t.buyHold : modelLabel(s.key);
+        html += row(name, num(v, 2) + "×", s.color);
+      });
+      showTip(html, evt);
+    });
+    hit.addEventListener("mouseleave", function () {
+      hideTip();
+      cross.setAttribute("opacity", 0);
+      dots.forEach(function (d) { d.setAttribute("opacity", 0); });
+    });
+
+    var legend = document.getElementById("equity-legend");
+    clear(legend);
+    drawn.forEach(function (s) {
+      var item = el("span", "legend-item");
+      var sw = el("span", "swatch" + (s.key === REFERENCE.key ? " dashed" : ""));
+      if (s.key !== REFERENCE.key) sw.style.background = s.color;
+      item.appendChild(sw);
+      item.appendChild(document.createTextNode(
+        s.key === REFERENCE.key ? t.buyHold : modelLabel(s.key)));
+      legend.appendChild(item);
+    });
+
+    document.getElementById("equity-sub").textContent =
+      t.logScale + " · " + m.oos_start + " " + t.to + " " + m.oos_end +
+      " · " + t.costPerSide + " " + m.config.cost_bps_per_side + " " + t.bpsPerSide;
+  }
+
+  // ---------- calibration ----------
+  function renderCalibration(m) {
+    var t = T();
+    var plot = document.getElementById("calib-plot");
+    clear(plot);
+
+    var W = plot.clientWidth || 420, H = 300;
+    var pad = { t: 12, r: 14, b: 34, l: 44 };
+    plot.setAttribute("viewBox", "0 0 " + W + " " + H);
+    plot.setAttribute("height", H);
+
+    var pts = m.reliability;
+    var vals = [];
+    pts.forEach(function (p) { vals.push(p.pred_mean, p.obs_rate); });
+    var lo = Math.min.apply(null, vals) - 0.015;
+    var hi = Math.max.apply(null, vals) + 0.015;
+
+    function X(v) { return pad.l + ((v - lo) / (hi - lo)) * (W - pad.l - pad.r); }
+    function Y(v) { return pad.t + (1 - (v - lo) / (hi - lo)) * (H - pad.t - pad.b); }
+
+    [lo, (lo + hi) / 2, hi].forEach(function (v) {
+      plot.appendChild(svg("line", { class: "grid", x1: pad.l, x2: W - pad.r, y1: Y(v), y2: Y(v) }));
+      var tx = svg("text", { x: pad.l - 8, y: Y(v) + 3.5, "text-anchor": "end" });
+      tx.textContent = pct(v, 0);
+      plot.appendChild(tx);
+      var tx2 = svg("text", { x: X(v), y: H - pad.b + 16, "text-anchor": "middle" });
+      tx2.textContent = pct(v, 0);
+      plot.appendChild(tx2);
+    });
+
+    plot.appendChild(svg("line", {
+      x1: X(lo), y1: Y(lo), x2: X(hi), y2: Y(hi),
+      stroke: "var(--reference)", "stroke-width": 2, "stroke-dasharray": "5 4"
+    }));
+
+    var d = "";
+    pts.forEach(function (p, i) {
+      d += (i ? "L" : "M") + X(p.pred_mean).toFixed(1) + " " + Y(p.obs_rate).toFixed(1);
+    });
+    plot.appendChild(svg("path", { class: "series", d: d, stroke: "var(--c1)" }));
+
+    pts.forEach(function (p) {
+      var c = svg("circle", {
+        cx: X(p.pred_mean), cy: Y(p.obs_rate), r: 5,
+        fill: "var(--c1)", stroke: "var(--surface)", "stroke-width": 2, style: "cursor:pointer"
+      });
+      c.addEventListener("mousemove", function (evt) {
+        showTip("<div class='tip-head'>" + t.tipBucket + "</div>" +
+          row(t.tipPred, pct(p.pred_mean)) + row(t.tipObs, pct(p.obs_rate)) +
+          row(t.tipCount, int(p.n)), evt);
+      });
+      c.addEventListener("mouseleave", hideTip);
+      plot.appendChild(c);
+    });
+
+    var xl = svg("text", { x: (pad.l + W - pad.r) / 2, y: H - 4, "text-anchor": "middle" });
+    xl.textContent = t.calibAxis;
+    plot.appendChild(xl);
+
+    document.getElementById("calib-sub").textContent = lang === "pt"
+      ? "linha tracejada = " + t.perfectCalib + " · " + modelLabel(m.best_model) + ", 10 faixas de tamanho igual"
+      : "dashed line = " + t.perfectCalib + " · " + modelLabel(m.best_model) + ", 10 equal-sized buckets";
+  }
+
+  // ---------- accuracy per fold ----------
+  function renderFolds(m) {
+    var t = T();
+    var plot = document.getElementById("fold-plot");
+    clear(plot);
+
+    var W = plot.clientWidth || 420, H = 300;
+    var pad = { t: 14, r: 12, b: 34, l: 44 };
+    plot.setAttribute("viewBox", "0 0 " + W + " " + H);
+    plot.setAttribute("height", H);
+
+    var folds = m.per_fold;
+    var maxDev = 0;
+    folds.forEach(function (f) { maxDev = Math.max(maxDev, Math.abs(f.accuracy - 0.5)); });
+    maxDev = Math.max(maxDev * 1.15, 0.02);
+
+    function Y(v) { return pad.t + (1 - (v - (0.5 - maxDev)) / (2 * maxDev)) * (H - pad.t - pad.b); }
+
+    [0.5 - maxDev, 0.5, 0.5 + maxDev].forEach(function (v) {
+      plot.appendChild(svg("line", {
+        class: v === 0.5 ? "axis-line" : "grid", x1: pad.l, x2: W - pad.r, y1: Y(v), y2: Y(v)
+      }));
+      var tx = svg("text", { x: pad.l - 8, y: Y(v) + 3.5, "text-anchor": "end" });
+      tx.textContent = pct(v, 1);
+      plot.appendChild(tx);
+    });
+
+    var innerW = W - pad.l - pad.r;
+    var slot = innerW / folds.length;
+    var bw = Math.max(2, slot - 2); // 2px of air between neighbouring bars
+
+    folds.forEach(function (f, i) {
+      var up = f.accuracy >= 0.5;
+      var y0 = Y(0.5), y1 = Y(f.accuracy);
+      var r = svg("rect", {
+        x: pad.l + i * slot + (slot - bw) / 2,
+        y: Math.min(y0, y1),
+        width: bw,
+        height: Math.max(1.5, Math.abs(y1 - y0)),
+        rx: 2,
+        fill: up ? "var(--c1)" : "var(--c2)",
+        style: "cursor:pointer"
+      });
+      r.addEventListener("mousemove", function (evt) {
+        showTip("<div class='tip-head'>" + t.tipBlock + " " + f.date + "</div>" +
+          row(t.tipAccuracy, pct(f.accuracy)) +
+          row(t.tipVsCoin, signed((f.accuracy - 0.5) * 100, 2) + " " + t.tipPP) +
+          row(t.tipCount, int(f.n)), evt);
+      });
+      r.addEventListener("mouseleave", hideTip);
+      plot.appendChild(r);
+    });
+
+    var lab = svg("text", { x: pad.l, y: H - 8 });
+    lab.textContent = folds[0].date + "  →  " + folds[folds.length - 1].date;
+    plot.appendChild(lab);
+
+    var wins = folds.filter(function (f) { return f.accuracy >= 0.5; }).length;
+    document.getElementById("fold-sub").textContent = lang === "pt"
+      ? wins + " de " + folds.length + " blocos acima de 50% · azul acima da moeda, laranja abaixo"
+      : wins + " of " + folds.length + " blocks above 50% · blue above the coin, orange below";
+  }
+
+  // ---------- KPIs ----------
+  function renderKPIs(m) {
+    var t = T();
+    var box = document.getElementById("kpis");
+    clear(box);
+
+    var best = m.results[m.best_model] ? m.best_model : "logistic";
+    var r = m.results[best];
+    var c = r.classification;
+    var bh = m.results._buy_and_hold.strategy_net;
+    var edge = c.accuracy - 0.5;
+
+    [
+      {
+        label: t.kpiAcc,
+        value: pct(c.accuracy),
+        chip: { cls: edge > 0 ? "good" : "warn", text: signed(edge * 100, 2) + " " + t.chipVsCoin },
+        sub: lang === "pt"
+          ? "modelo " + modelLabel(best) + " · " + int(m.n_predictions) + " previsões"
+          : modelLabel(best) + " model · " + int(m.n_predictions) + " predictions"
+      },
+      {
+        label: t.kpiBal,
+        value: pct(c.balanced_accuracy),
+        chip: { cls: c.balanced_accuracy > 0.5 ? "good" : "warn",
+                text: c.balanced_accuracy > 0.5 ? t.chipAbove : t.chipBelow },
+        sub: lang === "pt"
+          ? "corrige o desbalanço: " + pct(c.base_rate_up) + " dos dias subiram no período"
+          : "corrects the imbalance: " + pct(c.base_rate_up) + " of days were up in the period"
+      },
+      {
+        label: t.kpiP,
+        value: num(c.p_value_vs_coin, 4),
+        chip: { cls: c.p_value_vs_coin < 0.05 ? "good" : "flat",
+                text: c.p_value_vs_coin < 0.05 ? t.chipSig : t.chipChance },
+        sub: c.p_value_vs_coin < 0.05
+          ? (lang === "pt" ? "o acerto não se explica por sorte" : "the edge is not explained by luck")
+          : (lang === "pt" ? "o que se vê cabe dentro do ruído" : "what you see fits inside the noise")
+      },
+      {
+        label: t.kpiSharpe,
+        value: signed(r.strategy_net.sharpe, 2),
+        chip: { cls: r.strategy_net.sharpe > bh.sharpe ? "good" : "warn",
+                text: r.strategy_net.sharpe > bh.sharpe ? t.chipBeats : t.chipLoses },
+        sub: lang === "pt"
+          ? "comprar e segurar: " + signed(bh.sharpe, 2) + " · posicionado em " + pct(r.days_in_market, 1) + " dos dias"
+          : "buy and hold: " + signed(bh.sharpe, 2) + " · in the market on " + pct(r.days_in_market, 1) + " of days"
+      }
+    ].forEach(function (it) {
+      var k = el("div", "kpi");
+      k.appendChild(el("div", "kpi-label", it.label));
+      k.appendChild(el("div", "kpi-value", it.value));
+      k.appendChild(el("span", "chip " + it.chip.cls, it.chip.text));
+      k.appendChild(el("div", "kpi-sub", it.sub));
+      box.appendChild(k);
+    });
+
+    document.getElementById("scoreboard-note").textContent = lang === "pt"
+      ? "Melhor modelo do mercado: " + modelLabel(best) + ". Toda métrica abaixo é fora da amostra, agregando " + m.n_folds + " blocos trimestrais de teste."
+      : "Best model in this market: " + modelLabel(best) + ". Every metric below is out of sample, pooling " + m.n_folds + " quarterly test blocks.";
+  }
+
+  // ---------- models table ----------
+  function renderModelsTable(m) {
+    var t = T();
+    var tbody = document.querySelector("#models-table tbody");
+    clear(tbody);
+
+    ["always_up", "prev_sign", "random", "logistic", "lightgbm"].forEach(function (key) {
+      var r = m.results[key];
+      if (!r) return;
+      var c = r.classification, s = r.strategy_net;
+      var tr = el("tr");
+      if (key === m.best_model) tr.className = "highlight";
+
+      [[modelLabel(key), "name"], [pct(c.accuracy), ""], [pct(c.balanced_accuracy), ""],
+       [num(c.auc, 3), ""], [num(c.brier, 3), ""], [num(c.p_value_vs_coin, 4), ""],
+       [signed(s.sharpe, 2), ""], [pct(s.cagr), ""], [pct(r.days_in_market, 1), ""]
+      ].forEach(function (cell) { tr.appendChild(el("td", cell[1], cell[0])); });
+      tbody.appendChild(tr);
+    });
+
+    var bh = m.results._buy_and_hold.strategy_net;
+    var tr = el("tr", "reference");
+    [[t.buyHold, "name"], ["—", ""], ["—", ""], ["—", ""], ["—", ""], ["—", ""],
+     [signed(bh.sharpe, 2), ""], [pct(bh.cagr), ""], [pct(1, 1), ""]
+    ].forEach(function (cell) { tr.appendChild(el("td", cell[1], cell[0])); });
+    tbody.appendChild(tr);
+  }
+
+  // ---------- per-ticker table ----------
+  function renderTickerTable(m) {
+    var t = T();
+    var tbody = document.querySelector("#ticker-table tbody");
+    clear(tbody);
+
+    var maxDev = 0;
+    m.per_ticker.forEach(function (x) { maxDev = Math.max(maxDev, Math.abs(x.accuracy - 0.5)); });
+    maxDev = Math.max(maxDev, 0.005);
+
+    m.per_ticker.forEach(function (x) {
+      var tr = el("tr");
+      tr.appendChild(el("td", "name", x.ticker));
+      tr.appendChild(el("td", "", pct(x.accuracy)));
+
+      var td = el("td");
+      var wrap = el("div", "bar-cell");
+      wrap.appendChild(el("span", null, signed((x.accuracy - 0.5) * 100, 2) + " " + t.tipPP));
+      var track = el("div", "bar-track");
+      var fill = el("div", "bar-fill");
+      fill.style.width = (Math.abs(x.accuracy - 0.5) / maxDev * 100).toFixed(1) + "%";
+      fill.style.background = x.accuracy >= 0.5 ? "var(--c1)" : "var(--c2)";
+      fill.style.marginLeft = x.accuracy >= 0.5 ? "0" : "auto";
+      track.appendChild(fill);
+      wrap.appendChild(track);
+      td.appendChild(wrap);
+      tr.appendChild(td);
+
+      tr.appendChild(el("td", "", pct(x.base_rate)));
+      tr.appendChild(el("td", "", int(x.n)));
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ---------- method proofs ----------
+  function renderMethod(m) {
+    document.getElementById("proof-features").textContent = lang === "pt"
+      ? "44 features · nenhuma olha para depois de t"
+      : "44 features · none looks past t";
+    document.getElementById("proof-folds").textContent = lang === "pt"
+      ? m.n_folds + " blocos de teste · embargo de " + m.config.embargo_days + " dia"
+      : m.n_folds + " test blocks · " + m.config.embargo_days + "-day embargo";
+    document.getElementById("proof-cost").textContent = lang === "pt"
+      ? m.config.cost_bps_per_side + " bps por lado · giro completo custa " + (m.config.cost_bps_per_side * 2) + " bps"
+      : m.config.cost_bps_per_side + " bps per side · a full round trip costs " + (m.config.cost_bps_per_side * 2) + " bps";
+  }
+
+  // ---------- render ----------
+  function render() {
+    var m = DATA.markets[market];
+    document.getElementById("period").textContent = lang === "pt"
+      ? m.oos_start + " — " + m.oos_end + "  ·  " + int(m.n_predictions) + " previsões fora da amostra"
+      : m.oos_start + " — " + m.oos_end + "  ·  " + int(m.n_predictions) + " out-of-sample predictions";
+
+    renderChips();
+    renderCandles();
+    renderCall();
+    renderSignals();
+    renderKPIs(m);
+    renderEquity(m);
+    renderCalibration(m);
+    renderFolds(m);
+    renderModelsTable(m);
+    renderTickerTable(m);
+    renderMethod(m);
+
+    document.getElementById("build-stamp").textContent = lang === "pt"
+      ? "Gerado em " + DATA.generated_at + " · dados via yfinance · walk-forward expansivo"
+      : "Generated " + DATA.generated_at + " · data via yfinance · expanding walk-forward";
+  }
+
+  function renderAll() {
+    document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
+    applyStatic();
+    renderVerdict();
+    render();
+  }
+
+  document.querySelectorAll(".lang-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".lang-btn").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+      lang = btn.dataset.lang;
+      renderAll();
+    });
+  });
+
+  document.querySelectorAll(".range-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".range-btn").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+      rangeDays = +btn.dataset.days;
+      renderCandles();
+    });
+  });
+
+  document.querySelectorAll(".tab").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".tab").forEach(function (b) {
+        b.setAttribute("aria-selected", String(b === btn));
+      });
+      market = btn.dataset.market;
+      ticker = null;
+      render();
+    });
+  });
+
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      var m = DATA.markets[market];
+      renderCandles(); renderEquity(m); renderCalibration(m); renderFolds(m);
+    }, 140);
+  });
+
+  document.querySelectorAll(".lang-btn").forEach(function (b) {
+    b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+  });
+
+  renderAll();
+})();
+</script>
