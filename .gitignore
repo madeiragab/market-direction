@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+
+# Data cache: reproducible with scripts/fetch_data.py and too heavy to version.
+data/
+
+# Derived from reports/*.json by scripts/build_dashboard.py — the workflow in
+# .github/workflows/pages.yml rebuilds it on every push, so committing it would
+# only create conflicts.
+reports/dashboard.html
+site/
