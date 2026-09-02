@@ -1,0 +1,60 @@
+# Rebuilds the dashboard from the committed reports and publishes it to
+# GitHub Pages.
+#
+# The build needs no third-party packages: build_dashboard.py reads the JSON
+# reports and injects them into dashboard/template.html, and the only project
+# import it makes (marketdir.config) is pure stdlib. So this workflow never
+# touches yfinance and never depends on the market being reachable — the
+# published page is a deterministic function of what is in the repository.
+name: Deploy dashboard to Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dashboard/template.html'
+      - 'reports/*.json'
+      - 'scripts/build_dashboard.py'
+      - 'src/marketdir/config.py'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build the dashboard
+        run: |
+          mkdir -p site
+          python scripts/build_dashboard.py --out site/index.html
+          test -s site/index.html
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
