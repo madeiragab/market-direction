@@ -15,7 +15,7 @@ decidir se dá para acreditar na acurácia que aparece.
 > 49,94% de acurácia balanceada quando se desconta a tendência de alta do
 > mercado. **Em nenhum dos dois mercados uma estratégia bateu comprar e segurar.**
 
-📊 **[Dashboard interativo](https://claude.ai/code/artifact/bff3379c-289e-4078-94a0-a13d3a2776e4)** — candles por papel, chamadas do modelo dia a dia, PT/EN.
+📊 **[Dashboard interativo](https://madeiragab.github.io/market-direction/)** — candles por papel, chamadas do modelo dia a dia, PT/EN.
 
 ---
 
