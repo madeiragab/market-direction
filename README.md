@@ -2,6 +2,8 @@
 
 **English** · [Português](README.pt-BR.md)
 
+[![ci](https://github.com/madeiragab/market-direction/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/madeiragab/market-direction/actions/workflows/ci.yml)
+
 Next-day directional prediction for Brazilian (B3) and US (S&P 500) equities,
 built around the question most projects of this kind never ask: **is the model
 actually predicting anything, or is the backtest lying?**

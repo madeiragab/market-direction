@@ -2,6 +2,8 @@
 
 [English](README.md) · **Português**
 
+[![ci](https://github.com/madeiragab/market-direction/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/madeiragab/market-direction/actions/workflows/ci.yml)
+
 Previsão direcional de ações (D+1) para a B3 e o S&P 500, construída em torno da
 pergunta que a maioria dos projetos do gênero nunca faz: **o modelo realmente
 prevê alguma coisa, ou o backtest está mentindo?**
