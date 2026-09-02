@@ -1,0 +1,199 @@
+{
+  "generated_at": "2026-09-02T00:51:53",
+  "model": "logistic",
+  "threshold": 0.55,
+  "markets": {
+    "BR": {
+      "as_of": "2026-08-31",
+      "n_train": 45929,
+      "predictions": [
+        {
+          "ticker": "VALE3.SA",
+          "last_close": 77.85,
+          "prob_up": 0.542,
+          "signal": "out"
+        },
+        {
+          "ticker": "ABEV3.SA",
+          "last_close": 15.03,
+          "prob_up": 0.5369,
+          "signal": "out"
+        },
+        {
+          "ticker": "EQTL3.SA",
+          "last_close": 36.67,
+          "prob_up": 0.5317,
+          "signal": "out"
+        },
+        {
+          "ticker": "SUZB3.SA",
+          "last_close": 45.3,
+          "prob_up": 0.529,
+          "signal": "out"
+        },
+        {
+          "ticker": "B3SA3.SA",
+          "last_close": 16.22,
+          "prob_up": 0.5252,
+          "signal": "out"
+        },
+        {
+          "ticker": "WEGE3.SA",
+          "last_close": 50.15,
+          "prob_up": 0.5246,
+          "signal": "out"
+        },
+        {
+          "ticker": "GGBR4.SA",
+          "last_close": 23.74,
+          "prob_up": 0.5227,
+          "signal": "out"
+        },
+        {
+          "ticker": "BBDC4.SA",
+          "last_close": 17.19,
+          "prob_up": 0.5212,
+          "signal": "out"
+        },
+        {
+          "ticker": "RENT3.SA",
+          "last_close": 35.07,
+          "prob_up": 0.5202,
+          "signal": "out"
+        },
+        {
+          "ticker": "ITUB4.SA",
+          "last_close": 39.5018,
+          "prob_up": 0.5179,
+          "signal": "out"
+        },
+        {
+          "ticker": "PRIO3.SA",
+          "last_close": 62.68,
+          "prob_up": 0.5151,
+          "signal": "out"
+        },
+        {
+          "ticker": "RADL3.SA",
+          "last_close": 19.6,
+          "prob_up": 0.5127,
+          "signal": "out"
+        },
+        {
+          "ticker": "PETR4.SA",
+          "last_close": 45.02,
+          "prob_up": 0.5126,
+          "signal": "out"
+        },
+        {
+          "ticker": "BBAS3.SA",
+          "last_close": 20.74,
+          "prob_up": 0.5126,
+          "signal": "out"
+        },
+        {
+          "ticker": "LREN3.SA",
+          "last_close": 10.9,
+          "prob_up": 0.4986,
+          "signal": "out"
+        }
+      ]
+    },
+    "US": {
+      "as_of": "2026-09-01",
+      "n_train": 58334,
+      "predictions": [
+        {
+          "ticker": "TSLA",
+          "last_close": 356.09,
+          "prob_up": 0.5339,
+          "signal": "out"
+        },
+        {
+          "ticker": "V",
+          "last_close": 372.67,
+          "prob_up": 0.5334,
+          "signal": "out"
+        },
+        {
+          "ticker": "PG",
+          "last_close": 146.21,
+          "prob_up": 0.5334,
+          "signal": "out"
+        },
+        {
+          "ticker": "JNJ",
+          "last_close": 271.19,
+          "prob_up": 0.5334,
+          "signal": "out"
+        },
+        {
+          "ticker": "HD",
+          "last_close": 319.77,
+          "prob_up": 0.5333,
+          "signal": "out"
+        },
+        {
+          "ticker": "JPM",
+          "last_close": 354.95,
+          "prob_up": 0.5332,
+          "signal": "out"
+        },
+        {
+          "ticker": "WMT",
+          "last_close": 105.92,
+          "prob_up": 0.5331,
+          "signal": "out"
+        },
+        {
+          "ticker": "UNH",
+          "last_close": 396.3,
+          "prob_up": 0.5331,
+          "signal": "out"
+        },
+        {
+          "ticker": "AAPL",
+          "last_close": 325.13,
+          "prob_up": 0.533,
+          "signal": "out"
+        },
+        {
+          "ticker": "NVDA",
+          "last_close": 217.44,
+          "prob_up": 0.5329,
+          "signal": "out"
+        },
+        {
+          "ticker": "XOM",
+          "last_close": 164.55,
+          "prob_up": 0.5329,
+          "signal": "out"
+        },
+        {
+          "ticker": "GOOGL",
+          "last_close": 335.02,
+          "prob_up": 0.5328,
+          "signal": "out"
+        },
+        {
+          "ticker": "MSFT",
+          "last_close": 501.02,
+          "prob_up": 0.5327,
+          "signal": "out"
+        },
+        {
+          "ticker": "AMZN",
+          "last_close": 254.92,
+          "prob_up": 0.5326,
+          "signal": "out"
+        },
+        {
+          "ticker": "META",
+          "last_close": 578.54,
+          "prob_up": 0.5326,
+          "signal": "out"
+        }
+      ]
+    }
+  }
+}
