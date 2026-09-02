@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  auditoria:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      # Só o que a auditoria precisa. LightGBM, yfinance e matplotlib ficam de
+      # fora: nenhum teste desta suíte treina modelo nem toca a rede.
+      - name: instalar as dependências dos testes
+        run: pip install --quiet pandas numpy pytest
+
+      - name: as tres afirmacoes que sustentam o resultado
+        run: python -m pytest tests -q
