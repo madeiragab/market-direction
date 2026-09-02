@@ -15,7 +15,7 @@ infrastructure that lets you decide whether to believe the accuracy at all.
 > balanced accuracy once you account for the market's upward drift. **Neither
 > market produced a strategy that beat buy and hold.**
 
-📊 **[Interactive dashboard](https://claude.ai/code/artifact/bff3379c-289e-4078-94a0-a13d3a2776e4)** — candles per ticker, model calls day by day, PT/EN.
+📊 **[Interactive dashboard](https://madeiragab.github.io/market-direction/)** — candles per ticker, model calls day by day, PT/EN.
 
 ---
 
